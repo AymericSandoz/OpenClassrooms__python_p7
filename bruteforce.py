@@ -19,7 +19,7 @@ def Combinaison(actions, donnees, debut, fin, courant, k):
 
         for j in range(k):
             actions_itm.append(donnees[j]["name"])
-            profit_itm += donnees[j]["profit"] * donnees[j]["price"]
+            profit_itm += donnees[j]["profit"] * donnees[j]["price"] / 100
             price_itm += donnees[j]["price"]
 
         # print()

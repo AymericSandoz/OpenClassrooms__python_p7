@@ -10,4 +10,7 @@ Itertools : comment fonctionne les fonctions de permutations etc...
 
 2^20 nombre de combinaisons pour bruteforce normalement.
 
-Trier par prix 
+Trier par prix
+
+
+# Nettoyer des 
