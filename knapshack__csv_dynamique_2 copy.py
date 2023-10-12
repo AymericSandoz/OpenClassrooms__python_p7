@@ -2,13 +2,13 @@
 
 import csv
 import time
-import math
 
 temps_debut = time.time()
 
 
 # Chemins vers les fichiers CSV
-chemin_fichier1 = '../dataset1.csv'
+chemin_fichier1 = 'dataset1.csv'
+chemin_fichier2 = 'dataset2.csv'
 
 # Liste pour stocker les données de chaque fichier
 profit = []
@@ -16,14 +16,15 @@ weigth = []
 names = []
 
 # Lire les fichiers CSV et fusionner les données. Supprimer les actions dont le prix est inférieur à 0
-with open(chemin_fichier1, 'r') as fichier1:
+with open(chemin_fichier1, 'r') as fichier1, open(chemin_fichier2, 'r') as fichier2:
     actions = csv.DictReader(fichier1)
+    # lecteur_csv2 = csv.DictReader(fichier2)
 
     for action in actions:
         # if (float(action["price"]) > 0):
         if (float(action["price"]) > 0 and float(action["profit"]) > 0 ):
-            weigth.append(math.ceil(float(action["price"])))
-            profit.append(float(action["price"]) * float(action["profit"]) / 100 )
+            weigth.append(float(action["price"]))
+            profit.append(float(action["price"]) * float(action["profit"]) / 100)
             names.append(action["name"])
 
 def knapSack(W, wt, val, n):
@@ -34,10 +35,10 @@ def knapSack(W, wt, val, n):
             if i == 0 or w == 0:
                 K[i][w] = 0
             elif wt[i-1] <= w:
-                K[i][w] = max(val[i-1] + K[i-1][w - wt[i-1]], K[i-1][w])
+                K[i][w] = max(val[i-1] + K[i-1][int(w - wt[i-1])], K[i-1][w])
             else:
                 K[i][w] = K[i-1][w]
-
+  
     # Retourner le profit maximal et la liste des actions sélectionnées
     return K[n][W], get_selected_actions(K, wt, n, W)
 
@@ -55,7 +56,7 @@ def get_selected_actions(K, wt, n, W):
 
 
 if __name__ == '__main__':
-    W = 500 # Capacité maximale du sac
+    W = 500  # Capacité maximale du sac
     n = len(profit)  # Nombre d'actions
     max_profit, selected_actions = knapSack(W, weigth, profit, n)
 

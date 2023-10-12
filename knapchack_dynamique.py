@@ -5,25 +5,6 @@ import time
 
 temps_debut = time.time()
 
-# Chemins vers les fichiers CSV
-chemin_fichier1 = 'dataset1.csv'
-chemin_fichier2 = 'dataset2.csv'
-
-# Liste pour stocker les données de chaque fichier
-profit = []
-weigth = []
-names = []
-
-# Lire les fichiers CSV et fusionner les données. Supprimer les actions dont le prix est inférieur à 0
-with open(chemin_fichier1, 'r') as fichier1, open(chemin_fichier2, 'r') as fichier2:
-    actions = csv.DictReader(fichier1)
-    # lecteur_csv2 = csv.DictReader(fichier2)
-
-    for action in actions:
-        if (float(action["price"]) > 0 and float(action["profit"]) > 0 and float(action["profit"]) >= float(action["price"])):
-            weigth.append(float(action["price"]))
-            profit.append(float(action["price"]) * float(action["profit"]) / 100)
-            names.append(action["name"])
 
 # A naive recursive implementation
 # of 0-1 Knapsack Problem

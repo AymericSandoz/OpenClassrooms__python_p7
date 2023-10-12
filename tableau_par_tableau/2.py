@@ -33,7 +33,7 @@ def knapSack(W, wt, val, n):
             if i == 0 or w == 0:
                 K[i][w] = 0
             elif wt[i-1] <= w:
-                K[i][w] = max(val[i-1] + K[i-1][int(w - wt[i-1])], K[i-1][w])
+                K[i][w] = max(val[i-1] + K[i-1][int(w - wt[i-1])], K[i-1][w]) #K[i-1][w] --> ne pas porter l'action i //
             else:
                 K[i][w] = K[i-1][w]
   
@@ -46,7 +46,7 @@ def get_selected_actions(K, wt, n, W):
 
     while i > 0 and w > 0:
         if K[i][w] != K[i-1][w]:
-            selected_actions.append(i-1)  # L'indice est décalé de 1 à cause de la représentation 0-indexed
+            selected_actions.append(i-1)
             w = int(w - wt[i-1])
         i -= 1
 
