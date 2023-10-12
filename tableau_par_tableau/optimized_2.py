@@ -24,7 +24,7 @@ with open(chemin_fichier2, 'r') as fichier2:
             weigth.append(math.ceil(float(action["price"])))
             profit.append(float(action["price"]) * float(action["profit"]) / 100)
             names.append(action["name"])
-
+print(f"Le nombre d'actions après nettoyage des données est de : {len(names)}")
 def knapSack(W, wt, val, n):
     K = [[0 for x in range(W + 1)] for x in range(n + 1)]
   
